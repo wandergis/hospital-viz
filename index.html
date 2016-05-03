@@ -17,39 +17,53 @@
     #map {
         height: 100%;
     }
+    
     body {
-        background-position: 0px 55px;
+        /*background-position: 0px 55px;*/
         font-family: 'Microsoft YaHei';
         margin: 0;
         -webkit-font-smoothing: subpixel-antialiased;
-        letter-spacing: 0.10em !important;
-        line-height: 1.6em !important;
-        word-break: break-all;
-        background-color:#FFFFFF;
+        /*letter-spacing: 0.05em !important;*/
+        line-height: 1.2em !important;
+        /*word-break: break-all;*/
+        background-color: #FFFFFF;
     }
-    .label {
+    
+    .label,
+    .label-all {
         font-weight: 700;
         text-transform: uppercase;
         text-align: center;
         margin-top: -1em;
     }
     
-    .label div {
+    .label-all div {
         position: relative;
         width: 200px;
         top: 15px;
         overflow: visible;
         left: -50%;
-        color: red;
+        color: #008EFD;
+        /*text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.9);*/
+        pointer-events: none;
+    }
+    
+    .label div {
+        position: relative;
+        width: 400px;
+        top: 15px;
+        overflow: visible;
+        left: -50%;
+        color: #46e5d7;
         font-family: 'Microsoft YaHei';
-        font-size: 24px;
-        text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.9);
+        font-size: 16px;
+        /*text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.9);*/
         /*pointer-events: none;*/
     }
     
     .title {
         position: absolute;
-        top: 0;
+        top: 10px;
         width: 100%;
         text-align: center;
         color: #FD3500;
@@ -89,8 +103,9 @@
     var baseLayers = {
         "电子地图": L.tileLayer('http://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}', {
             subdomains: "1234"
-        }).addTo(map),
-        "卫星地图": L.tileLayer('http://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}')
+        }),
+        "卫星地图": L.tileLayer('http://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}'),
+        'GeoQ灰色底图': L.tileLayer('http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}').addTo(map)
     };
 
     var layerControl = L.control.layers(baseLayers, {}, {
@@ -134,7 +149,7 @@
                 labelgroup.addLayer(L.marker(latlng, {
                     icon: L.divIcon({
                         iconSize: null,
-                        className: 'label',
+                        className: 'label-all',
                         html: '<div>' + feature.properties.name + '</div>'
                     })
                 }));
