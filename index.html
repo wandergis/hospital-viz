@@ -33,7 +33,7 @@
         left: -50%;
         color: #FFEB3B;
         text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.9);
-        pointer-events: none;
+        /*pointer-events: none;*/
     }
     
     .title {
@@ -87,13 +87,13 @@
         collapsed: false
     }).addTo(map);
     var highlight = {}; //高亮符号
-    var lastclickLayer; //最后点击
+    var lastLayer; //最后点击
     var putianLayer;
-    var markergroup = new L.LayerGroup();
+    var labelgroup = new L.LayerGroup();
     $.getJSON('./putian.geojson', function(data) {
         putianLayer = L.geoJson(data, {
             pointToLayer: function(feature, latlng) {
-                return L.circleMarker(latlng, {
+                var marker = L.circleMarker(latlng, {
                     radius: 5,
                     color: '#fff',
                     fill: true,
@@ -102,31 +102,32 @@
                     fillColor: '#ff1c2a',
                     fillOpacity: 1
                 });
-            },
-            onEachFeature: function(feature, layer) {
-                markergroup.addLayer(L.marker(layer.getLatLng(), {
+                var label = L.marker(latlng, {
+                    icon: L.divIcon({
+                        iconSize: null,
+                        className: 'label',
+                        html: '<div>' + feature.properties.name + '</div>'
+                    })
+                });
+                marker.on('mouseover', function(e) {
+                    e.target.setRadius(10);
+                    lastLayer = label;
+                    lastLayer.addTo(map);
+                });
+                marker.on('mouseout', function(e) {
+                    e.target.setRadius(5);
+                    if (map.hasLayer(lastLayer)) {
+                        map.removeLayer(lastLayer);
+                    }
+                });
+                labelgroup.addLayer(L.marker(latlng, {
                     icon: L.divIcon({
                         iconSize: null,
                         className: 'label',
                         html: '<div>' + feature.properties.name + '</div>'
                     })
                 }));
-                layer.on('click', function(e) {
-                    if (lastclickLayer) {
-                        map.removeLayer(lastclickLayer);
-                    }
-                    var layer = e.target;
-                    lastclickLayer = L.marker(layer.getLatLng(), {
-                        icon: L.divIcon({
-                            iconSize: null,
-                            className: 'label',
-                            html: '<div>' + feature.properties.name + '</div>'
-                        })
-                    }).addTo(map);
-                    if (!L.Browser.ie && !L.Browser.opera) {
-                        layer.bringToFront();
-                    }
-                });
+                return marker;
             }
         }).addTo(map);
         layerControl.addOverlay(putianLayer, '莆田系医院');
@@ -141,20 +142,15 @@
             minOpacity: 0.5
         }).addTo(map);
         layerControl.addOverlay(heat, '莆田系医院分布热力图');
-        layerControl.addOverlay(markergroup, '标注');
-        map.on('click', function(e) {
-            if (map.hasLayer(lastclickLayer)) {
-                map.removeLayer(lastclickLayer);
-            }
-        });
+        layerControl.addOverlay(labelgroup, '标注');
         map.on('zoomend', function(e) {
             if (map.getZoom() > 7) {
-                if (!map.hasLayer(markergroup)) {
-                    map.addLayer(markergroup);
+                if (!map.hasLayer(labelgroup)) {
+                    map.addLayer(labelgroup);
                 }
             } else {
-                if (map.hasLayer(markergroup)) {
-                    map.removeLayer(markergroup);
+                if (map.hasLayer(labelgroup)) {
+                    map.removeLayer(labelgroup);
                 }
             }
         });
