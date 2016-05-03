@@ -17,6 +17,6 @@
 
 ## 截图示例
 
-[截图](https://raw.githubusercontent.com/wandergis/putian-hospitals/gh-pages/screenshot.png)
+![截图](https://raw.githubusercontent.com/wandergis/putian-hospitals/gh-pages/screenshot.png)
 
 
