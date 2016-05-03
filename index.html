@@ -142,6 +142,11 @@
         }).addTo(map);
         layerControl.addOverlay(heat, '莆田系医院分布热力图');
         layerControl.addOverlay(markergroup, '标注');
+        map.on('click', function(e) {
+            if (map.hasLayer(lastclickLayer)) {
+                map.removeLayer(lastclickLayer);
+            }
+        });
         map.on('zoomend', function(e) {
             if (map.getZoom() > 7) {
                 if (!map.hasLayer(markergroup)) {
@@ -152,7 +157,7 @@
                     map.removeLayer(markergroup);
                 }
             }
-        })
+        });
     });
     </script>
 </body>
