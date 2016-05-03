@@ -9,6 +9,14 @@
 
 ## 坐标获取
 
-- 使用node调用高德的geocode api解析。
+- 使用node调用高德的geocode api解析成经纬度
+
+## 数据展示
+
+- 使用leaflet展示
+
+## 截图示例
+
+[截图](https://raw.githubusercontent.com/wandergis/putian-hospitals/gh-pages/screenshot.png)
 
 
