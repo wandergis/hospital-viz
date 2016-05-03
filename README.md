@@ -7,7 +7,7 @@
 
 ## 数据来源
 
--[凤凰网的数据](http://news.ifeng.com/mainland/special/ptxyy/)
+- [凤凰网的数据](http://news.ifeng.com/mainland/special/ptxyy/)
 
 - 解密其`main2.min.js`文件，得到了hospitals的数组，使用python转成json数据。
 
