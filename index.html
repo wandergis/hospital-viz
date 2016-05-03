@@ -97,7 +97,9 @@
     </script>
     <script src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript">
-    var map = L.map('map', {}).fitBounds([
+    var map = L.map('map', {
+        tapTolerance: 25
+    }).fitBounds([
         [15.538375926292062, 51.67968749999999],
         [55.97379820507658, 164.1796875]
     ]);
@@ -137,6 +139,9 @@
                     })
                 });
                 marker.on('click', function(e) {
+                    if (map.hasLayer(lastLayer)) {
+                        map.removeLayer(lastLayer);
+                    }
                     lastLayer = label;
                     lastLayer.addTo(map);
                 })
@@ -169,7 +174,7 @@
         var heat = L.heatLayer(heatpoints, {
             radius: 15,
             blur: 15,
-            minOpacity: 0.7
+            minOpacity: 0.5
         }).addTo(map);
         putianLayer.bringToFront();
         layerControl.addOverlay(putianLayer, '莆田系医院');
