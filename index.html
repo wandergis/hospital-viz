@@ -43,10 +43,21 @@
         text-align: center;
         color: #FD3500;
         font-size: 2em;
+        z-index: 999;
     }
     
     canvas.leaflet-heatmap-layer {
         pointer-events: none;
+    }
+    
+    .tips {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        padding: 10px;
+        width: 200px;
+        background: #eee;
+        border-radius: 4px;
     }
     </style>
 </head>
@@ -54,6 +65,7 @@
 <body>
     <div id="map"></div>
     <div class="title">莆田系医院分布图</div>
+    <div class="tips">点击红色的点可以显示医院名称，放大地图到一定程度可显示标注,左侧可以打开关闭图层。</div>
     <script src="//cdn.bootcss.com/leaflet/0.7.7/leaflet.js"></script>
     <script type="text/javascript" src="leaflet-heat.js">
     </script>
@@ -77,6 +89,7 @@
     var highlight = {}; //高亮符号
     var lastclickLayer; //最后点击
     var putianLayer;
+    var markergroup = new L.LayerGroup();
     $.getJSON('./putian.geojson', function(data) {
         putianLayer = L.geoJson(data, {
             pointToLayer: function(feature, latlng) {
@@ -91,6 +104,13 @@
                 });
             },
             onEachFeature: function(feature, layer) {
+                markergroup.addLayer(L.marker(layer.getLatLng(), {
+                    icon: L.divIcon({
+                        iconSize: null,
+                        className: 'label',
+                        html: '<div>' + feature.properties.name + '</div>'
+                    })
+                }));
                 layer.on('click', function(e) {
                     if (lastclickLayer) {
                         map.removeLayer(lastclickLayer);
@@ -121,6 +141,18 @@
             minOpacity: 0.5
         }).addTo(map);
         layerControl.addOverlay(heat, '莆田系医院分布热力图');
+        layerControl.addOverlay(markergroup, '标注');
+        map.on('zoomend', function(e) {
+            if (map.getZoom() > 7) {
+                if (!map.hasLayer(markergroup)) {
+                    map.addLayer(markergroup);
+                }
+            } else {
+                if (map.hasLayer(markergroup)) {
+                    map.removeLayer(markergroup);
+                }
+            }
+        })
     });
     </script>
 </body>
