@@ -17,7 +17,16 @@
     #map {
         height: 100%;
     }
-    
+    body {
+        background-position: 0px 55px;
+        font-family: 'Microsoft YaHei';
+        margin: 0;
+        -webkit-font-smoothing: subpixel-antialiased;
+        letter-spacing: 0.10em !important;
+        line-height: 1.6em !important;
+        word-break: break-all;
+        background-color:#FFFFFF;
+    }
     .label {
         font-weight: 700;
         text-transform: uppercase;
@@ -31,7 +40,9 @@
         top: 15px;
         overflow: visible;
         left: -50%;
-        color: #FFEB3B;
+        color: red;
+        font-family: 'Microsoft YaHei';
+        font-size: 24px;
         text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.9);
         pointer-events: none;
     }
@@ -76,10 +87,10 @@
         [55.7765730186677, 165.673828125]
     ]);
     var baseLayers = {
-        "电子地图": L.tileLayer('http://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}').addTo(map),
-        "卫星地图": L.tileLayer('http://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}', {
+        "电子地图": L.tileLayer('http://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}', {
             subdomains: "1234"
-        })
+        }).addTo(map),
+        "卫星地图": L.tileLayer('http://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}')
     };
 
     var layerControl = L.control.layers(baseLayers, {}, {
