@@ -13,20 +13,30 @@
     }
     
     body,
-    html,
-    #map {
+    html {
         height: 100%;
     }
     
     body {
-        /*background-position: 0px 55px;*/
         font-family: 'Microsoft YaHei';
-        margin: 0;
         -webkit-font-smoothing: subpixel-antialiased;
-        /*letter-spacing: 0.05em !important;*/
         line-height: 1.2em !important;
-        /*word-break: break-all;*/
         background-color: #FFFFFF;
+    }
+    
+    .title {
+        text-align: center;
+        color: #00FDF8;
+        font-size: 24px;
+        line-height: 50px;
+        background: #304A65;
+    }
+    
+    #map {
+        position: absolute;
+        top: 50px;
+        bottom: 0;
+        width: 100%;
     }
     
     .label,
@@ -61,35 +71,26 @@
         pointer-events: none;
     }
     
-    .title {
-        position: absolute;
-        top: 10px;
-        width: 100%;
-        text-align: center;
-        color: #FD3500;
-        font-size: 2em;
-        z-index: 999;
-    }
-    
     canvas.leaflet-heatmap-layer {
         pointer-events: none;
     }
     
     .tips {
         position: absolute;
-        top: 15px;
-        right: 15px;
-        padding: 10px;
-        width: 200px;
+        top: 51px;
+        right: 0;
+        padding: 4px;
+        width: 260px;
         background: #eee;
         border-radius: 4px;
+        opacity: 0.7;
     }
     </style>
 </head>
 
 <body>
-    <div id="map"></div>
     <div class="title">莆田系医院分布图</div>
+    <div id="map"></div>
     <div class="tips">点击红色的点可以显示医院名称，放大地图到一定程度可显示标注,左侧可以打开关闭图层。</div>
     <script src="//cdn.bootcss.com/leaflet/0.7.7/leaflet.js"></script>
     <script type="text/javascript" src="leaflet-heat.js">
@@ -135,6 +136,10 @@
                         html: '<div>' + feature.properties.name + '</div>'
                     })
                 });
+                marker.on('click', function(e) {
+                    lastLayer = label;
+                    lastLayer.addTo(map);
+                })
                 marker.on('mouseover', function(e) {
                     e.target.setRadius(10);
                     lastLayer = label;
@@ -169,6 +174,11 @@
         }).addTo(map);
         layerControl.addOverlay(heat, '莆田系医院分布热力图');
         layerControl.addOverlay(labelgroup, '标注');
+        map.on('click', function(e) {
+            if (map.hasLayer(lastLayer)) {
+                map.removeLayer(lastLayer);
+            }
+        })
         map.on('zoomend', function(e) {
             if (map.getZoom() > 7) {
                 if (!map.hasLayer(labelgroup)) {
