@@ -1,6 +1,10 @@
 # putian-hospitals
 莆田系医院数据及其经纬度坐标，包括geojson和shp文件。
 
+## 在线查看
+
+- [点击前往](http://wandergis.com/putian-hospitals/)
+
 ## 数据来源
 
 -[凤凰网的数据](http://news.ifeng.com/mainland/special/ptxyy/)
