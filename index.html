@@ -214,7 +214,31 @@
         $("#mylocation").text("查看我的附近")
         alert("抱歉，定位失败")
     });
-
+    // 定位功能使用 leaflet 自带的方法来替换了下面调用原生 API的方式，但是在某些PC下 会返回错误的经纬度
+    // $("#mylocation").on("click", function() {
+    //     $("#mylocation").text("正在定位中")
+    //     getCurrentPosition(function(lat, lon) {
+    //         var latlng = L.latLng(lat, lon);
+    //         map.setView(latlng, 11);
+    //         $("#mylocation").text("查看我的附近")
+    //     }, function() {
+    //         alert("抱歉，该功能无法使用")
+    //         $("#mylocation").text("查看我的附近")
+    //     })
+    //     })
+    // function getCurrentPosition(callback, error) {
+    //     if ("geolocation" in navigator) {
+    //         navigator.geolocation.getCurrentPosition(function(position) {
+    //             var coords = position.coords;
+    //             var lat = coords.latitude;
+    //             var lon = coords.longitude;
+    //             callback && callback(lat, lon);
+    //         });
+    //     } else {
+    //         // 不支持地理位置api
+    //         error && error()
+    //     }
+    // }
    
     </script>
 </body>
