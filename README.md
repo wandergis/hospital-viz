@@ -3,7 +3,7 @@
 ## 数据来源
 - **数据来自网络，对数据的准确性并不完全保证，可视化结果仅供参和考学习用途。**
 - [来源一](http://news.ifeng.com/mainland/special/ptxyy/)
-- [来源二](https://github.com/langhua9527/Hospital)
+- [来源二](https://github.com/langhua9527/Hospital),截止`2016.5.4 10:00`解析594条数据
 
 ## 更新说明
 
