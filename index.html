@@ -102,11 +102,11 @@
 </head>
 
 <body>
-    <div class="title">莆田系医院分布图<span style="font-size: 12px;">&nbsp;数据来源于网络</span> </div>
+    <div class="title">一份网络数据的分布可视化<span style="font-size: 12px;">&nbsp;数据来源于网络</span> </div>
     <div id="map"></div>
     <div class="func">
-        <button class="tips" id='mylocation'>点击查附近莆田系医院</button>
-        <input class="typeahead" type="text" placeholder="请输入医院名称">
+        <button class="tips" id='mylocation'>点击查附近</button>
+        <input class="typeahead" type="text" placeholder="请输入名称">
     </div>
     <a href="https://github.com/wandergis/putian-hospitals"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png"></a>
     <script src="//cdn.bootcss.com/leaflet/0.7.7/leaflet.js"></script>
@@ -136,10 +136,10 @@
     }).addTo(map);
     var highlight = {}; //高亮符号
     var lastLayer; //最后点击
-    var putianLayer;
+    var hospitalLayer;
     var labelgroup = new L.LayerGroup();
-    $.getJSON('./putian.geojson', function(data) {
-        putianLayer = L.geoJson(data, {
+    $.getJSON('./hospital.geojson', function(data) {
+        hospitalLayer = L.geoJson(data, {
             pointToLayer: function(feature, latlng) {
                 var marker = L.circleMarker(latlng, {
                     radius: 5,
@@ -195,8 +195,8 @@
             blur: 15,
             minOpacity: 0.5
         }).addTo(map);
-        putianLayer.bringToFront();
-        layerControl.addOverlay(putianLayer, '莆田系医院');
+        hospitalLayer.bringToFront();
+        layerControl.addOverlay(hospitalLayer, '分布点');
         layerControl.addOverlay(heat, '分布热力图');
         layerControl.addOverlay(labelgroup, '标注');
         map.on('click', function(e) {
@@ -264,7 +264,7 @@
             queryTokenizer: Bloodhound.tokenizers.whitespace,
             local: function() {
                 var names = [];
-                putianLayer.eachLayer(function(l) {
+                hospitalLayer.eachLayer(function(l) {
                     names.push(l.feature.properties.name);
                 });
                 return names;
@@ -280,7 +280,7 @@
             $(this).val('');
         })
         $('.typeahead').bind('typeahead:select', function(ev, suggestion) {
-            putianLayer.eachLayer(function(l) {
+            hospitalLayer.eachLayer(function(l) {
                 if (l.feature.properties.name === suggestion) {
                     map.fitBounds(l, {
                         maxZoom: 16
