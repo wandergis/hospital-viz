@@ -5,6 +5,10 @@
 - [凤凰网的数据](http://news.ifeng.com/mainland/special/ptxyy/)，解密其`main2.min.js`文件，得到了hospitals的数组，使用python转成json数据。
 - [BlackheartedHospital](https://github.com/langhua9527/BlackheartedHospital)仓库网友更新数据
 
+## 在线查看
+
+- [点击前往](https://wandergis.com/putian-hospitals/index.html)
+
 ## 更新说明
 
 - 感谢[@kunkun12](https://github.com/kunkun12)增加查看我的附近功能(在某些PC上该功能可能会有问题)
@@ -15,11 +19,6 @@
 
 - ~~根据[BlackheartedHospital](https://github.com/langhua9527/BlackheartedHospital)仓库的最新数据更新geojson~~
 - 交互改进
-
-## 在线查看
-
-- [点击前往](https://wandergis.com/putian-hospitals/)
-
 
 ## 坐标获取
 
