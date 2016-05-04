@@ -3,7 +3,7 @@
 
 ## 在线查看
 
-- [点击前往](http://wandergis.com/putian-hospitals/)
+- [点击前往](https://wandergis.com/putian-hospitals/)
 
 ## 数据来源
 
