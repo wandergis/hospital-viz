@@ -1,4 +1,4 @@
-# putian-hospitals
+# hospital-viz
 根据网络来源的医院数据整理出经纬度坐标，生成geojson文件并可视化展示，仅作为可视化展示学习之用，仅供参考学习。
 ## 数据来源
 - **数据来自网络，对数据的准确性并不完全保证，可视化结果仅供参和考学习用途。**
@@ -7,7 +7,7 @@
 
 ## 在线查看
 
-- [点击前往](https://wandergis.com/putian-hospitals/index.html)
+- [点击前往](https://wandergis.com/hospital-viz/index.html)
 
 ## 更新说明
 
@@ -30,12 +30,12 @@
 - 使用leaflet展示
 
 ## 二维码
-- ![截图](https://raw.githubusercontent.com/wandergis/putian-hospitals/gh-pages/qrcode.png)
+- ![截图](https://raw.githubusercontent.com/wandergis/hospital-viz/gh-pages/qrcode.png)
 
 ## 截图示例
 
-![截图](https://raw.githubusercontent.com/wandergis/putian-hospitals/gh-pages/screenshot2.png)
+![截图](https://raw.githubusercontent.com/wandergis/hospital-viz/gh-pages/screenshot2.png)
 
-![截图](https://raw.githubusercontent.com/wandergis/putian-hospitals/gh-pages/screenshot.png)
+![截图](https://raw.githubusercontent.com/wandergis/hospital-viz/gh-pages/screenshot.png)
 
 

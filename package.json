@@ -1,7 +1,7 @@
 {
-    "name": "putian-hospitals",
+    "name": "hospital-viz",
     "version": "1.0.0",
-    "description": "A open data contains geojson and shp and dataVis.",
+    "description": "A open data contains geojson and shp and DataViz.",
     "main": "index.js",
     "scripts": {
 
@@ -12,7 +12,7 @@
     },
     "keywords": [
         "data",
-        "vis",
+        "viz",
         "leaflet",
         "hospital"
     ],
