@@ -28,6 +28,9 @@
 
 - 使用leaflet展示
 
+## 二维码
+- ![截图](https://raw.githubusercontent.com/wandergis/putian-hospitals/gh-pages/2wm.jpg)
+
 ## 截图示例
 
 ![截图](https://raw.githubusercontent.com/wandergis/putian-hospitals/gh-pages/screenshot2.png)
