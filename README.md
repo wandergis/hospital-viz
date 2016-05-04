@@ -29,7 +29,7 @@
 - 使用leaflet展示
 
 ## 二维码
-- ![截图](https://github.com/shihai84/putian-hospitals/blob/gh-pages/qrcode.jpg)
+- ![截图](https://github.com/shihai84/putian-hospitals/blob/gh-pages/qrcode.png)
 
 ## 截图示例
 
