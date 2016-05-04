@@ -5,10 +5,12 @@
 
 - 可以在手机、微信查看附近的莆田系医院
 - 感谢[@kunkun12](https://github.com/kunkun12)增加查看我的附近功能
+- 根据[BlackheartedHospital](https://github.com/langhua9527/BlackheartedHospital)仓库的最新数据更新geojson，截止2016.5.4 10:40,部分数据由于名称关系可能未解析到地址。
+- 目前解析了`594`条数据,以`geojson`文件为准
 
 ## todos
 
-- 根据[BlackheartedHospital](https://github.com/langhua9527/BlackheartedHospital)仓库的最新数据更新geojson
+- ~~根据[BlackheartedHospital](https://github.com/langhua9527/BlackheartedHospital)仓库的最新数据更新geojson~~
 - 交互改进
 
 ## 在线查看
