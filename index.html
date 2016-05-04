@@ -80,8 +80,9 @@
         top: 51px;
         right: 0;
         padding: 4px;
-        width: 260px;
+        width: 120px;
         background: #eee;
+        font-size: 14px;
         border-radius: 4px;
         opacity: 0.7;
     }
@@ -89,9 +90,9 @@
 </head>
 
 <body>
-    <div class="title">莆田系医院分布图</div>
+    <div class="title">莆田系医院分布图 </div>
     <div id="map"></div>
-    <div class="tips">点击红色的点可以显示医院名称，放大地图到一定程度可显示标注,左侧可以打开关闭图层。</div>
+    <button class="tips" id='mylocation'>查看我的附近</button>
     <script src="//cdn.bootcss.com/leaflet/0.7.7/leaflet.js"></script>
     <script type="text/javascript" src="leaflet-heat.js">
     </script>
@@ -202,6 +203,31 @@
             }
         });
     });
+
+    $("#mylocation").on("click",function(){
+        getCurrentPosition(function(lat,lon){
+
+                var latlng = L.latLng(lat, lon);
+                map.setView(latlng,11);
+        },function(){
+            alert("抱歉，该功能无法使用")
+        })
+    })
+     function getCurrentPosition(callback,error){
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                console.log(position)
+                var coords=position.coords;
+                var lat=coords.latitude;
+                var lon=coords.longitude;
+                console.log(lat)
+                callback&&callback(lat,lon);
+            });
+        } else {
+          // 不支持地理位置api
+          error&&error()
+        }
+       }
     </script>
 </body>
 
