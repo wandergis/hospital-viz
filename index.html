@@ -205,12 +205,14 @@
     });
 
     $("#mylocation").on("click",function(){
+        $("#mylocation").text("正在定位中")
         getCurrentPosition(function(lat,lon){
-
                 var latlng = L.latLng(lat, lon);
                 map.setView(latlng,11);
+                 $("#mylocation").text("查看我的附近")
         },function(){
             alert("抱歉，该功能无法使用")
+             $("#mylocation").text("查看我的附近")
         })
     })
      function getCurrentPosition(callback,error){
@@ -220,7 +222,6 @@
                 var coords=position.coords;
                 var lat=coords.latitude;
                 var lon=coords.longitude;
-                console.log(lat)
                 callback&&callback(lat,lon);
             });
         } else {
