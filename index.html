@@ -94,8 +94,7 @@
     <div id="map"></div>
     <button class="tips" id='mylocation'>查看我的附近</button>
     <script src="//cdn.bootcss.com/leaflet/0.7.7/leaflet.js"></script>
-    <script type="text/javascript" src="leaflet-heat.js">
-    </script>
+    <script src="leaflet-heat.js"></script>
     <script src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript">
     var map = L.map('map', {
@@ -107,13 +106,13 @@
     var baseLayers = {
         "电子地图": L.tileLayer('http://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}', {
             subdomains: "1234",
-            attribution:'高德地图'
+            attribution: '高德地图'
         }),
-        "卫星地图": L.tileLayer('http://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}',{
-            attribution:'Google Map'
+        "卫星地图": L.tileLayer('http://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}', {
+            attribution: 'Google Map'
         }),
-        '深色底图': L.tileLayer('http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}',{
-            attribution:'geoq'
+        '深色底图': L.tileLayer('http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'geoq'
         }).addTo(map)
     };
 
@@ -204,30 +203,30 @@
         });
     });
 
-    $("#mylocation").on("click",function(){
-        getCurrentPosition(function(lat,lon){
-
-                var latlng = L.latLng(lat, lon);
-                map.setView(latlng,11);
-        },function(){
+    $("#mylocation").on("click", function() {
+        getCurrentPosition(function(lat, lon) {
+            var latlng = L.latLng(lat, lon);
+            map.setView(latlng, 11);
+        }, function() {
             alert("抱歉，该功能无法使用")
         })
     })
-     function getCurrentPosition(callback,error){
+
+    function getCurrentPosition(callback, error) {
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(function(position) {
-                console.log(position)
-                var coords=position.coords;
-                var lat=coords.latitude;
-                var lon=coords.longitude;
-                console.log(lat)
-                callback&&callback(lat,lon);
+                // console.log(position)
+                var coords = position.coords;
+                var lat = coords.latitude;
+                var lon = coords.longitude;
+                // console.log(lat)
+                callback && callback(lat, lon);
             });
         } else {
-          // 不支持地理位置api
-          error&&error()
+            // 不支持地理位置api
+            error && error()
         }
-       }
+    }
     </script>
 </body>
 
