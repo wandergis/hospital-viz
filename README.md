@@ -1,5 +1,5 @@
 # putian-hospitals
-莆田系医院数据及其经纬度坐标，包括geojson和shp文件。
+根据网络来源的医院数据整理出经纬度坐标，生成geojson文件并可视化展示，仅作为可视化展示学习之用，仅供参考学习。
 ## 数据来源
 - **数据来自网络，对数据的准确性并不完全保证，可视化结果仅供参和考学习用途。**
 - [凤凰网的数据](http://news.ifeng.com/mainland/special/ptxyy/)，解密其`main2.min.js`文件，得到了hospitals的数组，使用python转成json数据。
