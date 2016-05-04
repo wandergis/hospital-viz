@@ -104,14 +104,14 @@
         [55.97379820507658, 164.1796875]
     ]);
     var baseLayers = {
-        "电子地图": L.tileLayer('http://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}', {
+        "电子地图": L.tileLayer('//webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}', {
             subdomains: "1234",
             attribution: '高德地图'
         }),
-        "卫星地图": L.tileLayer('http://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}', {
+        "卫星地图": L.tileLayer('//www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}', {
             attribution: 'Google Map'
         }),
-        '深色底图': L.tileLayer('http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}', {
+        '深色底图': L.tileLayer('//map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}', {
             attribution: 'geoq'
         }).addTo(map)
     };
@@ -204,30 +204,18 @@
     });
 
     $("#mylocation").on("click", function() {
-        $("#mylocation").text("正在定位中")
-        getCurrentPosition(function(lat, lon) {
-            var latlng = L.latLng(lat, lon);
-            map.setView(latlng, 11);
-            $("#mylocation").text("查看我的附近")
-        }, function() {
-            alert("抱歉，该功能无法使用")
-            $("#mylocation").text("查看我的附近")
-        })
+         $("#mylocation").text("正在定位中")
+        map.locate({setView: true, maxZoom: 11});
     })
+    map.on('locationfound', function(){
+        $("#mylocation").text("查看我的附近")
+    });
+    map.on('locationerror', function(){
+        $("#mylocation").text("查看我的附近")
+        alert("抱歉，定位失败")
+    });
 
-    function getCurrentPosition(callback, error) {
-        if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                var coords = position.coords;
-                var lat = coords.latitude;
-                var lon = coords.longitude;
-                callback && callback(lat, lon);
-            });
-        } else {
-            // 不支持地理位置api
-            error && error()
-        }
-    }
+   
     </script>
 </body>
 
