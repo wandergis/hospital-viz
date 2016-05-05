@@ -3,14 +3,19 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>莆田系医院分布</title>
+    <title>一份网络数据的分布可视化</title>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link href="//cdn.bootcss.com/leaflet/0.7.7/leaflet.css" rel="stylesheet">
+<<<<<<< HEAD:index.html
     <link rel="stylesheet" href="./css/typeahead.css">
+=======
+    <link rel="stylesheet" type="text/css" href="css/typeahead.css">
+>>>>>>> 68335f241126178f08e85d8e630c931f787b9664:index.htm
     <style type="text/css">
     * {
         margin: 0;
         padding: 0;
+        box-sizing:border-box;
     }
     
     body,
@@ -76,27 +81,45 @@
         pointer-events: none;
     }
     
-    .tips {
+    .func {
         position: absolute;
         top: 51px;
-        right: 0;
+        left: 40px;
+        width: 160px;
+        z-index: 9999;
+    }
+    
+    .tips {
+        display: block;
         padding: 4px;
-        width: 120px;
-        background: #eee;
+        width: 100%;
+        text-align: center;
+        color: #fff;
+        border: none;
+        background: #13C38A;
         font-size: 14px;
         border-radius: 4px;
-        opacity: 0.7;
+        /*opacity: 0.7;*/
+        margin: 4px;
     }
     </style>
 </head>
 
 <body>
-    <div class="title">莆田系医院分布图 </div>
+    <div class="title">一份网络数据的分布可视化<span style="font-size: 12px;">&nbsp;数据来源于网络</span> </div>
     <div id="map"></div>
+<<<<<<< HEAD:index.html
     <button class="tips" id='mylocation'>查看我的附近</button>
     <div id="bloodhound">
         <input class="typeahead" type="text" placeholder="输入医院名字">
     </div>
+=======
+    <div class="func">
+        <button class="tips" id='mylocation'>点击查附近</button>
+        <input class="typeahead" type="text" placeholder="请输入名称">
+    </div>
+    <a href="https://github.com/wandergis/hospital-viz"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png"></a>
+>>>>>>> 68335f241126178f08e85d8e630c931f787b9664:index.htm
     <script src="//cdn.bootcss.com/leaflet/0.7.7/leaflet.js"></script>
     <script src="leaflet-heat.js"></script>
     <script src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
@@ -104,10 +127,7 @@
     <script type="text/javascript">
     var map = L.map('map', {
         tapTolerance: 25
-    }).fitBounds([
-        [15.538375926292062, 51.67968749999999],
-        [55.97379820507658, 164.1796875]
-    ]);
+    }).setView(L.latLng(38.993572058209466, 106.435546875), 4);
     var baseLayers = {
         "电子地图": L.tileLayer('//webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}', {
             subdomains: "1234",
@@ -123,14 +143,14 @@
 
     var layerControl = L.control.layers(baseLayers, {}, {
         position: 'topleft',
-        collapsed: false
+        collapsed: true
     }).addTo(map);
     var highlight = {}; //高亮符号
     var lastLayer; //最后点击
-    var putianLayer;
+    var hospitalLayer;
     var labelgroup = new L.LayerGroup();
-    $.getJSON('./putian.geojson', function(data) {
-        putianLayer = L.geoJson(data, {
+    $.getJSON('./hospital.geojson', function(data) {
+        hospitalLayer = L.geoJson(data, {
             pointToLayer: function(feature, latlng) {
                 var marker = L.circleMarker(latlng, {
                     radius: 5,
@@ -186,9 +206,9 @@
             blur: 15,
             minOpacity: 0.5
         }).addTo(map);
-        putianLayer.bringToFront();
-        layerControl.addOverlay(putianLayer, '莆田系医院');
-        layerControl.addOverlay(heat, '莆田系医院分布热力图');
+        hospitalLayer.bringToFront();
+        layerControl.addOverlay(hospitalLayer, '分布点');
+        layerControl.addOverlay(heat, '分布热力图');
         layerControl.addOverlay(labelgroup, '标注');
         map.on('click', function(e) {
             if (map.hasLayer(lastLayer)) {
@@ -210,6 +230,7 @@
     });
 
     $("#mylocation").on("click", function() {
+<<<<<<< HEAD:index.html
          $("#mylocation").text("正在定位中");
         map.locate({setView: true, maxZoom: 11});
     });
@@ -219,6 +240,20 @@
     map.on('locationerror', function(){
         $("#mylocation").text("查看我的附近");
         alert("抱歉，定位失败");
+=======
+        $("#mylocation").text("正在定位中")
+        map.locate({
+            setView: true,
+            maxZoom: 11
+        });
+    })
+    map.on('locationfound', function() {
+        $("#mylocation").text("查看我的附近")
+    });
+    map.on('locationerror', function() {
+        $("#mylocation").text("查看我的附近")
+        alert("抱歉，定位失败")
+>>>>>>> 68335f241126178f08e85d8e630c931f787b9664:index.htm
     });
     // 定位功能使用 leaflet 自带的方法来替换了下面调用原生 API的方式，但是在某些PC下 会返回错误的经纬度
     // $("#mylocation").on("click", function() {
@@ -245,6 +280,7 @@
     //         error && error()
     //     }
     // }
+<<<<<<< HEAD:index.html
    
     //搜索功能
     function initQuery(){
@@ -257,10 +293,24 @@
                 names.push(l.feature.properties.name);
             });
             return names;
+=======
+    //感谢@brandonxiang添加搜索功能
+    function initQuery() {
+        var engine = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.whitespace,
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            local: function() {
+                var names = [];
+                hospitalLayer.eachLayer(function(l) {
+                    names.push(l.feature.properties.name);
+                });
+                return names;
+>>>>>>> 68335f241126178f08e85d8e630c931f787b9664:index.htm
             }
         });
         engine.initialize();
         $('.typeahead').typeahead({
+<<<<<<< HEAD:index.html
             highlight:true
         },{
             source:engine
@@ -269,11 +319,29 @@
             putianLayer.eachLayer(function(l){
                 if(l.feature.properties.name===suggestion){
                     map.fitBounds(l,{maxZoom:16});
+=======
+            highlight: true
+        }, {
+            source: engine
+        });
+        $('.typeahead').click(function(){
+            $(this).val('');
+        })
+        $('.typeahead').bind('typeahead:select', function(ev, suggestion) {
+            hospitalLayer.eachLayer(function(l) {
+                if (l.feature.properties.name === suggestion) {
+                    map.fitBounds(l, {
+                        maxZoom: 16
+                    });
+>>>>>>> 68335f241126178f08e85d8e630c931f787b9664:index.htm
                 }
             });
         });
     }
+<<<<<<< HEAD:index.html
     
+=======
+>>>>>>> 68335f241126178f08e85d8e630c931f787b9664:index.htm
     </script>
 </body>
 
