@@ -1,36 +1,4 @@
 {
-<<<<<<< HEAD
-  "name": "putian-hospitals",
-  "version": "1.0.0",
-  "description": "putian hospitals data contains geojson and shp.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "browsersync": "browser-sync start --server --files \"**/*.css, **/*.html\""
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/wandergis/putian-hospitals.git"
-  },
-  "keywords": [
-    "putian",
-    "hospital"
-  ],
-  "author": "wandergis",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/wandergis/putian-hospitals/issues"
-  },
-  "homepage": "https://github.com/wandergis/putian-hospitals#readme",
-  "dependencies": {
-    "async": "^1.5.2",
-    "lodash": "^4.11.2",
-    "request": "^2.72.0"
-  },
-  "devDependencies": {
-    "browser-sync": "^2.12.5"
-  }
-=======
     "name": "hospital-viz",
     "version": "1.0.0",
     "description": "A open data contains geojson and shp and DataViz.",
@@ -59,5 +27,4 @@
         "lodash": "^4.11.2",
         "request": "^2.72.0"
     }
->>>>>>> 68335f241126178f08e85d8e630c931f787b9664
 }

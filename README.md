@@ -24,13 +24,3 @@
 
 ![截图](https://raw.githubusercontent.com/wandergis/hospital-viz/gh-pages/screenshot.png)
 
-##开发须知
-
-使用browser-sync调试开发
-
-```
-npm install
-npm run browsersync
-```
-
-
