@@ -24,4 +24,3 @@
 
 ![截图](https://raw.githubusercontent.com/wandergis/hospital-viz/gh-pages/screenshot.png)
 
-

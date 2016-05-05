@@ -129,7 +129,6 @@
             attribution: 'geoq'
         }).addTo(map)
     };
-
     var layerControl = L.control.layers(baseLayers, {}, {
         position: 'topleft',
         collapsed: true
@@ -217,7 +216,6 @@
         });
         initQuery();
     });
-
     $("#mylocation").on("click", function() {
         $("#mylocation").text("正在定位中")
         map.locate({
