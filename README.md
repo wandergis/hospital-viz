@@ -20,8 +20,10 @@
 
 ## 截图示例
 
-![截图](https://raw.githubusercontent.com/wandergis/hospital-viz/gh-pages/screenshot2.png)
+![截图2](https://raw.githubusercontent.com/wandergis/hospital-viz/gh-pages/screenshot2.png)
 
-![截图](https://raw.githubusercontent.com/wandergis/hospital-viz/gh-pages/screenshot.png)
+![截图3](https://raw.githubusercontent.com/wandergis/hospital-viz/gh-pages/screenshot3.png)
+
+![截图1](https://raw.githubusercontent.com/wandergis/hospital-viz/gh-pages/screenshot.png)
 
 
