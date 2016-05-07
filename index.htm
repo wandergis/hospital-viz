@@ -205,7 +205,7 @@
             }
         })
         map.on('zoomend', function(e) {
-            if (map.getZoom() > 9) {
+            if (map.getZoom() > 8) {
                 if (!map.hasLayer(labelgroup)) {
                     map.addLayer(labelgroup);
                 }
